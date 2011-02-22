@@ -11,6 +11,8 @@ var app= require('express').createServer();
   app.set('root', __dirname);
 });
 
+*/
+
 app.configure('development', function() {
 	app.use(express.errorHandler({
 		dumpException: true,
@@ -21,7 +23,7 @@ app.configure('development', function() {
 app.configure('production', function() {
 	app.use(express.errorHandler());
 });
-*/
+
 app.get('/', function(req, res) {
 	res.send('hello world');
 });
