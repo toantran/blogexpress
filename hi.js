@@ -1,7 +1,7 @@
 /**
  * @author toantran
  */
-var app= require('express').createServer();
+var express = require('express'), app= express.createServer();
 
 /*app.configure(function(){
   app.use(express.methodOverride());
