@@ -1,20 +1,27 @@
 /**
  * @author toantran
  */
-var kiwi= require('kiwi')
+var app= require('express').createServer();
 
-kiwi.require('express');
-require('express/plugins')
+app.configure(function(){
+  app.use(express.methodOverride);
+  app.use(express.bodyDecoder());
+  app.use(app.router);
+  app.use(app.staticProvider(__dirname + '/public'));
+  app.set('root', __dirname);
+});
 
-configure(function(){
-  use(MethodOverride);
-  use(ContentLength);
-  use(Logger);
-  set('root', __dirname);
-})
+app.configure('development', function() {
+	app.use(express.errorHandler({
+		dumpException: true,
+		showStack: true
+	}));
+});
 
-get('/', function(){
-  this.halt(200, "Hello World!");
-})
+app.configure('production', function() {
+	app.use(express.errorHandler());
+});
 
-run();
+app.listen(3000);
+
+console.log('App running on port 3000');
