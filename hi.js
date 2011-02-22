@@ -3,7 +3,7 @@
  */
 var app= require('express').createServer();
 
-app.configure(function(){
+/*app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.bodyDecoder());
   app.use(app.router);
@@ -21,7 +21,7 @@ app.configure('development', function() {
 app.configure('production', function() {
 	app.use(express.errorHandler());
 });
-
+*/
 app.get('/', function(req, res) {
 	res.send('hello world');
 });
