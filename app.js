@@ -28,8 +28,22 @@ app.configure('production', function() {
 var articleProvider = new ArticleProvider();
 
 app.get('/', function(req, res) {
-	var scope = this;
+	res.send('Welcome to my articles', 200);
+});
+
+app.get('/articles/:id?', function(req, res, next) {
+	var id = req.params.id;
 	
+	if (id) {
+		articleProvider.findById( id, function(error, article) {
+			res.send('Article: ' + article, 200);
+		});
+	} else {
+		next(req, res);
+	}
+});
+
+app.get('/articles', function(req, res) {
 	articleProvider.findAll( function(error, data) {
 		res.send(data);
 	}); 
