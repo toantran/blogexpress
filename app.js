@@ -34,7 +34,7 @@ app.get('/', function(req, res) {
 app.get('/articles/:id?', function(req, res, next) {
 	var id = req.params.id;
 	
-	console.log('id=', id);
+	console.log('id=', id, ' next=', next);
 	if (id) {
 		articleProvider.findById( id, function(error, article) {
 			res.send('Article: ' + article, 200);
