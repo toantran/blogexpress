@@ -2,7 +2,8 @@
  * @author toantran
  */
 var express = require('express'), 
-	app= express.createServer();
+	app= express.createServer(),
+	ArticleProvider = require('./articleprovider-memory.js').provider;
 
 app.configure(function(){
   app.use(express.methodOverride());
@@ -24,8 +25,14 @@ app.configure('production', function() {
 	app.use(express.errorHandler());
 });
 
+var articleProvider = new ArticleProvider();
+
 app.get('/', function(req, res) {
-	res.send('hello world');
+	var scope = this;
+	
+	articleProvider.findAll( function(error, data) {
+		res.send(data);
+	}); 
 });
 
 app.listen(3000);
