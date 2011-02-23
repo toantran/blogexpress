@@ -8,7 +8,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.bodyDecoder());
   app.use(app.router);
-  app.use(app.staticProvider(__dirname + '/public'));
+  app.use(express.staticProvider(__dirname + '/public'));
   app.set('root', __dirname);
 });
 
